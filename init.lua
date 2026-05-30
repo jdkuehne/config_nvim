@@ -1,9 +1,12 @@
 -- my functions
 require('colorscheme')
 
-if vim.fn.has("win32") then
-    vim.cmd.source("~/AppData/Local/nvim/vim/pwsh.vim")
+-- jdk: options/shell setup
+if (vim.fn.has("win32") == 1) then
     vim.cmd.source("~/AppData/Local/nvim/vim/options.vim")
+    vim.cmd.source("~/AppData/Local/nvim/vim/pwsh.vim")
+else
+    vim.cmd.source("~/.config/nvim/vim/options.vim")
 end
 
 -- Keymaps
