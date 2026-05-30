@@ -1,37 +1,10 @@
 -- my functions
 require('colorscheme')
 
-vim.g.loaded_netrw       = 1
-vim.g.loaded_netrwPlugin = 1
-
--- Leader
-vim.g.mapleader = ' '
-
--- Vim options
-vim.o.relativenumber = true
-vim.o.number = true
-vim.o.wrap = false
-vim.o.cursorline = true
-vim.o.colorcolumn = '100'
-vim.o.scrolloff = 999
-vim.o.list = true
-vim.o.confirm = true
-vim.o.mouse = 'a'
-
-vim.o.splitright = true
-vim.o.splitbelow = true
-
- -- case for search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- tabstop
-vim.o.shiftwidth = 4
-vim.o.softtabstop = -1 -- vim uses shiftwidth if negative
-
--- cindent
-vim.o.cindent = true
-vim.o.cinoptions = 'l1, N-s'
+if vim.fn.has("win32") then
+    vim.cmd.source("~/AppData/Local/nvim/vim/pwsh.vim")
+    vim.cmd.source("~/AppData/Local/nvim/vim/options.vim")
+end
 
 -- Keymaps
 vim.keymap.set('n', '<Esc><Esc>', '<cmd>nohlsearch<CR>', { desc = 'Remove search result highlighting' })
@@ -42,14 +15,13 @@ vim.keymap.set('i', '<C-s><C-n>', '// @NOTE(jdk): ', {})
 
 vim.pack.add({
     'https://github.com/nvim-tree/nvim-web-devicons',
-    'https://github.com/nvim-lua/plenary.nvim',
     'https://github.com/ibhagwan/fzf-lua',
     'https://github.com/nvim-treesitter/nvim-treesitter',
 })
 
 require('fzf-lua').setup({
 	files = {
-	    cmd = 'find . -type f ! -path "./.git/*" ! -iname "*.o"'
+	    cmd = 'fd -E ".git" -E ".o" .'
 	}
 })
 
